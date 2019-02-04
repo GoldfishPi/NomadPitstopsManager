@@ -1,26 +1,41 @@
-import Vue from "vue";
-import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
+import Blog from './views/Blog.vue';
+import PostManager from '@/components/PostManager.vue';
+import Login from '@/components/Login.vue';
+import AuthService from '@/services/auth.ts';
 
 Vue.use(Router);
 
+var authservice = new AuthService();
+
 export default new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: "/",
-      name: "home",
-      component: Home
-    },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
-    }
-  ]
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+            beforeEnter: authservice.isLoggedIn
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
+        },
+        {
+            path: '/blog',
+            name: 'blog',
+            component: Blog,
+            beforeEnter: authservice.isLoggedIn
+        },
+        {
+            path: '/blog/edit/:id',
+            name: 'blogEditor',
+            component: PostManager,
+            beforeEnter: authservice.isLoggedIn
+        }
+    ]
 });
