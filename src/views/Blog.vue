@@ -26,7 +26,7 @@ import axios from 'axios';
 import config from '@/config';
 import api from '@/services/api';
 // import func from './vue-temp/vue-editor-bridge';
-export default {
+export default Vue.extend({
     data() {
         return {
             posts: [],
@@ -50,7 +50,7 @@ export default {
             }).then(this.getPosts);
         }
     }
-};
+});
 </script>
 
 <style lang="less">

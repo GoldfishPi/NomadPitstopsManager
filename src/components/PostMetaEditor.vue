@@ -55,7 +55,8 @@
 
 <script>
 import Api from '@/services/api';
-export default {
+import Vue from 'vue';
+export default Vue.extend({
     props: ['post'],
     created() {
         if (!this.post) return;
@@ -114,7 +115,7 @@ export default {
             });
         }
     }
-};
+});
 </script>
 
 <style lang="less">

@@ -9,27 +9,28 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { VueEditor } from 'vue2-editor';
 import axios from 'axios';
 import config from '@/config.ts';
 import api from '@/services/api';
+const VueEditor = require('vue2-editor');
 
-export default {
+export default Vue.extend({
     components: {
         VueEditor
     },
     props: ['post'],
+
     data() {
         return {};
     },
     methods: {
-        handleSave: function() {
+        handleSave() {
             api.post('/blog/' + this.post.id, {
                 body: this.post.body
             });
         }
     }
-};
+});
 </script>
 
 <style lang="less">

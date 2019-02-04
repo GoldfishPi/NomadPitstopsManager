@@ -27,17 +27,13 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { VueEditor } from 'vue2-editor';
 import axios from 'axios';
 import config from '@/config.ts';
 import router from '@/router';
 
-@Component({
-    methods: {}
-})
-export default class Login extends Vue {
+export default Vue.extend({
     data() {
         return {
             user: {
@@ -45,20 +41,22 @@ export default class Login extends Vue {
                 password: ''
             }
         };
+    },
+    methods: {
+        handleSubmit() {
+            console.log('being called', this.user.email);
+            axios
+                .post(config.api + '/user/authenticate', {
+                    username: this.user.email,
+                    password: this.user.password
+                })
+                .then(data => {
+                    window.localStorage.setItem('token', data.data.token);
+                    router.push('/');
+                });
+        }
     }
-    handleSubmit() {
-        console.log('being called', this.user.email);
-        axios
-            .post(config.api + '/user/authenticate', {
-                username: this.user.email,
-                password: this.user.password
-            })
-            .then(data => {
-                window.localStorage.setItem('token', data.data.token);
-                router.push('/');
-            });
-    }
-}
+});
 </script>
 
 <style lang="less">

@@ -8,7 +8,7 @@ import AuthService from '@/services/auth.ts';
 
 Vue.use(Router);
 
-var authservice = new AuthService();
+// var authservice = new AuthService();
 
 export default new Router({
     mode: 'history',
@@ -18,7 +18,7 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home,
-            beforeEnter: authservice.isLoggedIn
+            beforeEnter: AuthService.isLoggedIn
         },
         {
             path: '/login',
@@ -29,13 +29,13 @@ export default new Router({
             path: '/blog',
             name: 'blog',
             component: Blog,
-            beforeEnter: authservice.isLoggedIn
+            beforeEnter: AuthService.isLoggedIn
         },
         {
             path: '/blog/edit/:id',
             name: 'blogEditor',
             component: PostManager,
-            beforeEnter: authservice.isLoggedIn
+            beforeEnter: AuthService.isLoggedIn
         }
     ]
 });

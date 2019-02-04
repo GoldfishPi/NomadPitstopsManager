@@ -35,12 +35,12 @@
 <script>
 import AuthService from '@/services/auth';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { VueEditor } from 'vue2-editor';
+
 import axios from 'axios';
 import config from '@/config.ts';
 import router from '@/router';
 import store from '@/store';
-export default {
+export default Vue.extend({
     computed: {
         loggedIn() {
             return this.$store.state.loggedIn;
@@ -55,7 +55,7 @@ export default {
             this.$router.push('/login');
         }
     }
-};
+});
 </script>
 
 <style>

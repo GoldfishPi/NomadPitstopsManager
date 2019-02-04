@@ -2,8 +2,9 @@ import VueRouter from 'vue-router';
 import sotre from '@/store';
 import store from '@/store';
 
-export default class AuthService {
-    isLoggedIn(to, from, next) {
+class AuthService {
+    isLoggedIn(to: Object, from: Object, next: Function) {
+        console.log(to, from);
         const router = new VueRouter();
         if (window.localStorage && window.localStorage.getItem('token')) {
             next();
@@ -28,3 +29,5 @@ export default class AuthService {
         }
     }
 }
+
+export default new AuthService();

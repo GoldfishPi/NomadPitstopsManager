@@ -48,7 +48,8 @@
 import PostEditor from '@/components/PostEditor.vue';
 import PostMetaEditor from '@/components/PostMetaEditor.vue';
 import Api from '@/services/api';
-export default {
+import Vue from 'vue';
+export default Vue.extend({
     components: {
         PostEditor,
         PostMetaEditor
@@ -94,7 +95,7 @@ export default {
             }
         }
     }
-};
+});
 </script>
 
 <style>
