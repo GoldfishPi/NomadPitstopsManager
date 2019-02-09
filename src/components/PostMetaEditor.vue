@@ -80,6 +80,7 @@ export default Vue.extend({
     methods: {
         handleFileUpload() {
             const fileReader = new FileReader();
+            console.log('stuff', this.$refs.imageUpload);
             fileReader.readAsDataURL(this.$refs.imageUpload.files[0]);
             fileReader.onload = () => {
                 this.image = fileReader.result;
@@ -109,6 +110,7 @@ export default Vue.extend({
             });
         },
         deactivate() {
+            console.log('not active', this.post);
             this.post.active = false;
             Api.post('/blog/' + this.post.id, {
                 active: false

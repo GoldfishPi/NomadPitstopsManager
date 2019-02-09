@@ -6,3 +6,7 @@ app.use(serveStatic(__dirname + '/dist'));
 var port = process.env.PORT || 3002;
 app.listen(port);
 console.log('server started ' + port);
+
+/opt/certbot/certbot-auto certonly --webroot --agree-tos -w /srv/www/letsencrypt/ \
+--email erikbadger777@gmail.com \
+--expand -d manage.nomadpitstops.com

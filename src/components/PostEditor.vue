@@ -7,12 +7,14 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Prop, Vue } from 'vue-property-decorator';
+// import Vue from 'vue';
 import axios from 'axios';
 import config from '@/config.ts';
 import api from '@/services/api';
-const VueEditor = require('vue2-editor');
+import { VueEditor } from 'vue2-editor';
+// const VueEditor = require('vue2-editor');
 
 export default Vue.extend({
     components: {
